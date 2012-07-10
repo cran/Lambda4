@@ -1,7 +1,11 @@
-baeb5322578bf90d137ee6a7be965862 *DESCRIPTION
+90a8d8a8352cac296933ad1c20a40323 *DESCRIPTION
 8b54e5a89fbda3af5e077053d40bec76 *NAMESPACE
-88904156bcce79c79cb1aeacbfbd3380 *R/cov.lambda4.R
-014e2502afaeb5f856c87fe187c6f09b *R/quant.lambda4.R
-2e6a0df21114497db24d1bd8f1ba3665 *man/Lambda4-package.Rd
-e30f6527668a1831083c092792e1cab9 *man/cov.lambda4.Rd
-96fd8d552073e7885ec0f627169fcd06 *man/quant.lambda4.Rd
+ef9e3887becd9ed8a484644107e98bc3 *R/bin.combs.R
+d1f5a8a9bf04b0fb80745a104c1394bc *R/cov.lambda4.R
+cd1212b468965c79624fc091c23a9f13 *R/quant.lambda4.R
+eebbb148922a0c1b457274aa1781774b *R/user.lambda4.R
+10a98f55f9179f36c6177066bc2c112c *man/Lambda4-package.Rd
+593ff3abd3bca8ae34817a0d87ce2def *man/bin.combs.Rd
+6695b0062ed4148c84eca1601995b429 *man/cov.lambda4.Rd
+c4d08d8d8addea1abcf5b046b3b38e34 *man/quant.lambda4.Rd
+d11724b44f3e74bc83e3deea5e03482c *man/user.lambda4.Rd

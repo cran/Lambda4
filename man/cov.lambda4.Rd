@@ -25,9 +25,9 @@ cov.lambda4(x, show.splits = FALSE)
 \item{median.lambda4}{Median value returned in the lambda4.list}
 }
 \references{
-Cronbach L (1951). "Coefficient Alpha and the Internal Structure of Tests." Psychometrika, 16, 297-334.
-Guttman L (1945). "A Basis for Analyzing Test-Retest Reliability." Psychometrika, 10, 255-282.
-Callender J, Osburn H (1977). "A Method for Maximizing and Cross-Validating Split-Half Reliability Coefficients." Educational and Psychological Measurement, 37, 819-826.
+Cronbach L (1951). "Coefficient Alpha and the Internal Structure of Tests." Psychometrika, 16, 297-334. \\
+Guttman L (1945). "A Basis for Analyzing Test-Retest Reliability." Psychometrika, 10, 255-282. \\
+Callender J, Osburn H (1977). "A Method for Maximizing and Cross-Validating Split-Half Reliability Coefficients." Educational and Psychological Measurement, 37, 819-826. \\
 Callender J, Osburn H (1979). "An Empirical Comparison of Coefficient Alpha, Guttman's Lambda2 and Msplit Maximized Split-Half Reliability Estimates." Journal of Educational Measurement, 16, 89-99.
 }
 \author{
@@ -37,6 +37,6 @@ Tyler Hunt
 	This code has a lower level bias in small samples < 80 than the quantile lambda4 code.
 }
 \seealso{Sijtsma K (2009). "On the Use, Misuse, and Very Limited Usefulness of Cronbach's Alpha." Psychometrika, 74(1), 107-120.}
-\examples{cov.lambda4(USJudgeRatings)
+\examples{cov.lambda4(Harman74.cor$cov)
 }
 \keyword{Reliability}
