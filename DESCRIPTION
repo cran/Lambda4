@@ -2,13 +2,15 @@ Package: Lambda4
 Type: Package
 Title: Estimation techniques for the reliability estimate: Maximized
         Lambda4
-Version: 1.0
-Date: 2012-03-12
+Version: 2.0
+Date: 2012-07-10
 Author: Tyler Hunt
 Maintainer: <tyler.hunt@utah.edu>
-Description: This code provides 4 different estimates of maximized
-        lambda4 (A split half reliability estimate)
+Description: Currently the code features 2 new ways to calculate
+        reliability.  Both are based on a combination of Cronbach's
+        alpha and Maximal-type reliability coefficients but use
+        different maximization procedures.
 License: GPL (>= 2)
-Packaged: 2012-04-05 00:07:28 UTC; wzp311
+Packaged: 2012-07-13 05:22:54 UTC; wzp311
 Repository: CRAN
-Date/Publication: 2012-04-05 05:51:52
+Date/Publication: 2012-07-13 05:29:37

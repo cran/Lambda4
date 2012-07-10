@@ -1,5 +1,7 @@
-b42a582d570d13dc4c29bfd0096142c2 *DESCRIPTION
+baeb5322578bf90d137ee6a7be965862 *DESCRIPTION
 8b54e5a89fbda3af5e077053d40bec76 *NAMESPACE
-ba7c5f99db9320db220b9b4be358ba4f *R/lambda4.R
-8106175fd2cb7fb71d34cbf35c071672 *man/Lambda4-package.Rd
-b14901ab9cf9faada52f20b711c737c8 *man/lambda4.Rd
+88904156bcce79c79cb1aeacbfbd3380 *R/cov.lambda4.R
+014e2502afaeb5f856c87fe187c6f09b *R/quant.lambda4.R
+2e6a0df21114497db24d1bd8f1ba3665 *man/Lambda4-package.Rd
+e30f6527668a1831083c092792e1cab9 *man/cov.lambda4.Rd
+96fd8d552073e7885ec0f627169fcd06 *man/quant.lambda4.Rd
