@@ -1,5 +1,5 @@
 cov.lambda4 <-
-function (x, show.splits=FALSE)
+function (x, show.lambda4s=FALSE)
  {
 
  #number of variables
@@ -72,16 +72,23 @@ function (x, show.splits=FALSE)
  l4.vect[i]<-(4*(t1t.matrix[i,]%*%sigma%*%t2.matrix[,i]))/(onerow%*%sigma)%*%onevector
  	}
  	
- max.lambda4<-max(l4.vect)
- mean.lambda4<-mean(l4.vect)
- median.lambda4<-median(l4.vect)
- min.lambda4<-min(l4.vect)
+ Max<-max(l4.vect)
+ Mean<-mean(l4.vect)
+ Median<-median(l4.vect)
+ Minimum<-min(l4.vect)
  
-if (show.splits==FALSE){
- 	result<-list(max.lambda4=max.lambda4, mean.lambda4=mean.lambda4, median.lambda4=median.lambda4, min.lambda4=min.lambda4)
+ 
+ lambda4s<-lencombs
+ Items<-nvar
+ 
+ lambda4<-data.frame(Mean, Max, Median, Minimum)
+ Analysis.Details<-data.frame(Items, lambda4s)
+ 
+if (show.lambda4s==FALSE){
+ 	result<-list(lambda4=lambda4, Analysis.Details=Analysis.Details)
  }
- if(show.splits==TRUE){
- result<-list(l4.vect=l4.vect, max.lambda4=max.lambda4, mean.lambda4=mean.lambda4, median.lambda4=median.lambda4, min.lambda4=min.lambda4)
+ if(show.lambda4s==TRUE){
+ result<-list(lambda4=lambda4,Analysis.Details=Analysis.Details, l4.vect=l4.vect)
  }
  return(result)
  }

@@ -1,5 +1,5 @@
 quant.lambda4 <-
-function(x, starts=1000, quantile=.5, show.splits=FALSE){
+function(x, starts=1000, quantile=.5, show.lambda4s=FALSE){
 
 #Outerloop
 
@@ -19,6 +19,7 @@ onerow<-rep(1,items)
 onerow<-t(onerow)
 onevector<-t(onerow)
 f<-rep(NA,starts)
+
 for(y in 1:starts){
 #Innerloop (minimization function)
 
@@ -60,14 +61,14 @@ splitmtrx[,y]<-t1
 l4.vect[y]<-(4*(t1t%*%sigma%*%t2))/(onerow%*%sigma%*%onevector)
 }
 quants<-quantile(l4.vect, quantile)
+
 lambda4.quantile=quants
-lambda4.optimal<-max(l4.vect)
-lambda4.alpha<-mean(l4.vect)
-if (show.splits==FALSE){
-	result<-list(lambda4.quantile=lambda4.quantile, lambda4.optimal=lambda4.optimal)
+
+if (show.lambda4s==FALSE){
+	result<-list(lambda4.quantile=lambda4.quantile)
 }
-if(show.splits==TRUE){
-	result<-list(lambda4.quantile=lambda4.quantile, lambda4.optimal=lambda4.optimal,l4.vect=l4.vect)
+if(show.lambda4s==TRUE){
+	result<-list(lambda4.quantile=lambda4.quantile,l4.vect=l4.vect)
 }
 
 return(result)
