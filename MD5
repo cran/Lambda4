@@ -1,10 +1,10 @@
-5f7f86b0e125e213a00d202bc5b9bcf6 *DESCRIPTION
+ea93e3cfc16c431f03c6ec0c3920161a *DESCRIPTION
 8b54e5a89fbda3af5e077053d40bec76 *NAMESPACE
 ef9e3887becd9ed8a484644107e98bc3 *R/bin.combs.R
-0ce9d87d559bf482e98ef1e67fcebb8a *R/cov.lambda4.R
+2d752e3253905ae72257824ce8f81229 *R/cov.lambda4.R
 7032a472b7960a1516c06740b2264620 *R/lambda3.R
 f5409ffbe2b3d77402fcf03d269086fc *R/quant.lambda4.R
-75ec283e24331b523e58ff9657de089c *R/user.lambda4.R
+6c0220a69000515866847fcc54fae500 *R/user.lambda4.R
 5c9c966e4fa53c64db6793a21b2c40ef *data/Guttman.rda
 4c8129b53142a14e008207c08dba696c *data/Rosenberg.rda
 ebf31d35eac1abdeeb7175ab4b4cc861 *data/Warner.rda
@@ -13,7 +13,7 @@ ebf31d35eac1abdeeb7175ab4b4cc861 *data/Warner.rda
 490504559bca1ba00ba7116ea44a6f02 *man/Rosenberg.Rd
 594dcbb8dba975bb68e9ea5137945995 *man/Warner.Rd
 ab8451c96d2d66c7be7d3c12440ccf7b *man/bin.combs.Rd
-937eeed3d33de3c7a14be446c22b398d *man/cov.lambda4.Rd
+5ca1f94d7cdc7dec8b620268e0783f6e *man/cov.lambda4.Rd
 7e993334d35780e95050539a1c867111 *man/lambda3.Rd
 dc1817eaa52072f5b9a1c4b5ae1016b0 *man/quant.lambda4.Rd
-d2af05cebb6888620b1f2d5ad5d56ba7 *man/user.lambda4.Rd
+45ba2a799de325c78fdebe7283ca513c *man/user.lambda4.Rd

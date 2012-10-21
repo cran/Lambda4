@@ -1,5 +1,5 @@
 cov.lambda4 <-
-function (x, show.lambda4s=FALSE)
+function (x, show.lambda4s=FALSE, show.splits=TRUE)
  {
 
  #number of variables
@@ -71,7 +71,16 @@ function (x, show.lambda4s=FALSE)
  for(i in 1:lencombs){
  l4.vect[i]<-(4*(t1t.matrix[i,]%*%sigma%*%t2.matrix[,i]))/(onerow%*%sigma)%*%onevector
  	}
- 	
+ 
+
+ 
+ if(show.splits==TRUE){
+ sl4<-sort(l4.vect)	
+ Min.Split<-t1t.matrix[which(l4.vect==sl4[1]),]	
+ Median.Split<-t1t.matrix[which(l4.vect==sl4[round(lencombs/2)]),]	
+ Max.Split<-t1t.matrix[which(l4.vect==sl4[lencombs]),]
+ Splits<-data.frame(Min.Split, Median.Split, Max.Split)	
+ }
  Max<-max(l4.vect)
  Mean<-mean(l4.vect)
  Median<-median(l4.vect)
@@ -85,10 +94,14 @@ function (x, show.lambda4s=FALSE)
  Analysis.Details<-data.frame(Items, lambda4s)
  
 if (show.lambda4s==FALSE){
- 	result<-list(lambda4=lambda4, Analysis.Details=Analysis.Details)
+	if(show.splits==TRUE){result<-list(lambda4=lambda4, Analysis.Details=Analysis.Details, Splits=Splits)}
+ 	else
+ 	{result<-list(lambda4=lambda4, Analysis.Details=Analysis.Details)}
  }
  if(show.lambda4s==TRUE){
- result<-list(lambda4=lambda4,Analysis.Details=Analysis.Details, l4.vect=l4.vect)
+ 	if(show.splits==TRUE){result<-list(lambda4=lambda4,Analysis.Details=Analysis.Details, l4.vect=l4.vect, Splits=Splits)}
+ 	else
+ {result<-list(lambda4=lambda4,Analysis.Details=Analysis.Details, l4.vect=l4.vect)}
  }
  return(result)
  }

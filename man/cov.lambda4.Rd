@@ -6,11 +6,12 @@
 split half reliability estimate that splits the halves by specifying a two 
 column list of paired inter-item covariances in descending order.  It then
 calculates Lambda4 on every possible split half while preserving the inter-item pairings.  The function then returns a list of the Lambda4s and then takes the minimum, maximum, median, and mean of the list.}
-\usage{cov.lambda4(x, show.lambda4s = FALSE)}
+\usage{cov.lambda4(x, show.lambda4s = FALSE, show.splits=TRUE)}
 
 \arguments{
 \item{x}{Can be either a data matrix or a covariance matrix.}
-\item{show.lambda4s}{If TRUE then Shows the vector of lambda4s if FALSE then the vector is hidden}
+\item{show.lambda4s}{If TRUE then shows the vector of lambda4s if FALSE then the vector is hidden}
+\item{show.splits}{If TRUE then the minimum, median, and maximum split will be in the output}
 }
 
 \value{
@@ -23,6 +24,7 @@ calculates Lambda4 on every possible split half while preserving the inter-item 
 \item{Analysis.Details}{Includes description of the number of splits}
 \item{Items}{The number of items}
 \item{lambda4s}{The number of unique splits(after maximization)}
+\item{Splits}{A vector of 1s and 0s that represents the splits of the items.  The minumum, median, and maximum are output if show.splits=TRUE}
 }
 \references{
 Cronbach L (1951). "Coefficient Alpha and the Internal Structure of Tests." Psychometrika, 16, 297-334.

@@ -1,5 +1,5 @@
 user.lambda4 <-
-function(x, split.method="even.odd", bootstrap=FALSE, B=1000, show.boots=FALSE, item.stats.max=12){
+function(x, split.method="even.odd", bootstrap=FALSE, B=1000, show.boots=FALSE, item.stats.max=12, conf.lvl=.95){
 
  #number of variables
  nvar<-dim(x)[2] 
@@ -9,10 +9,12 @@ function(x, split.method="even.odd", bootstrap=FALSE, B=1000, show.boots=FALSE, 
  #Determines if x is a covariance or a data matrix and establishes a covariance matrix for estimation.
  p <- dim(x)[2]
  if (dim(x)[1] == p) sigma <- as.matrix(x)  else sigma <- var(x, use="pairwise")
+ 
  if(split.method[1]=="even.odd") t1t.split<-rep(c(1,0),ceiling(nvar/2))[1:nvar] 
  if(split.method[1]=="random") t1t.split<-round(runif(nvar))
  if(split.method[1]=="evenly.random") t1t.split<-sample(rep(c(1,0),ceiling(nvar/2))[1:nvar])
  if(split.method[1]==1 | split.method[1]==0) t1t.split<-split.method 
+
  if(length(t1t.split)!=nvar)
  	warning("The length of split is not the same as the number of items")
  Split<-t1t.split
@@ -21,8 +23,8 @@ function(x, split.method="even.odd", bootstrap=FALSE, B=1000, show.boots=FALSE, 
  if (dim(x)[1] != p)
  	{
  	Mean<-round(colMeans(x, na.rm=TRUE),digits=2)
- 	SD<-round(sapply(x,sd, na.rm=TRUE), digits=2)
- 	Item.Statistics<-data.frame(Split,Mean,SD,Obs, row.names=(colnames(x)))
+ 	SD<-round(apply(x,2,sd, na.rm=TRUE), digits=2)
+ 	Item.Statistics<-data.frame(Split,Mean,SD,Obs, row.names=colnames(x))
 	 }
 else
 	{Item.Statistics<-data.frame(Split, Obs)}}
@@ -38,23 +40,23 @@ else
  		samp<-round(sample(1:n, replace=TRUE))
  		sigma<-cov(x[samp,], use="pairwise")
  		temp[i]<-(4*(t1t.split%*%sigma%*%t2.split))/(onerow%*%sigma)%*%onevector
- 		
  	}
- 	LowerCI<-quantile(temp,.45)
- 	UpperCI<-quantile(temp,.55)
+ 	z<-qnorm(1-(1-conf.lvl)/2)
  	Estimate<-mean(temp)
+ 	LowerCI<-Estimate-z*sd(temp)
+ 	UpperCI<-Estimate+z*sd(temp)
  	Estimate<-data.frame(LowerCI,Estimate,UpperCI, row.names=NULL)
  	Boots<-temp
  }
- else {Estimate<-(4*(t1t.split%*%sigma%*%t2.split))/(onerow%*%sigma)%*%onevector 
- 	Estimate<-data.frame(Estimate)}
+ if(bootstrap==FALSE) {Estimate<-(4*(t1t.split%*%sigma%*%t2.split))/(onerow%*%sigma)%*%onevector
+ 	Estimate=data.frame(Estimate)}
  
  if(p<=item.stats.max){
  if(show.boots==TRUE) 
  {result<-list(lambda4=Estimate, Item.Statistics=Item.Statistics, Boots=Boots)}
- else
+ if(show.boots==FALSE)
  {result<-list(lambda4=Estimate, Item.Statistics=Item.Statistics)}}
- else
+ if(p>item.stats.max)
  {result<-list(lambda4=Estimate)}
  return(result)
  }

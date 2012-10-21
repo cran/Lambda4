@@ -4,7 +4,7 @@
 \description{
 This function gets back to the roots of Guttman's (1945) conception of reliability estimation.  Specifically, it allows users to specify the split of items that they want for calculating Guttman's lambda4.  Additionally, it allows a random split or an evenly random split.
 }
-\usage{user.lambda4(x, split.method = "even.odd", bootstrap = FALSE, B = 1000, show.boots = FALSE, item.stats.max = 12)}
+\usage{user.lambda4(x, split.method = "even.odd", bootstrap = FALSE, B = 1000, show.boots = FALSE, item.stats.max = 12, conf.lvl=.95)}
 \arguments{
   \item{x}{This is data that can be a covariance matrix or a normal data frame.}
   
@@ -17,6 +17,7 @@ This function gets back to the roots of Guttman's (1945) conception of reliabili
   \item{B}{The number of bootstraps.}
   \item{show.boots}{Shows lambda4 estimates for each bootstrapped sample.}
   \item{item.stats.max}{Item stats are suppressed if the number of items is larger than this value.}
+  \item{conf.lvl}{Level of confidence desired for the confidence interval.  Note that this only applies if bootstrap=TRUE}
 }
 \details{
 This 
