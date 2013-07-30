@@ -1,5 +1,22 @@
-user.lambda4 <-
-function(x, split.method="even.odd", bootstrap=FALSE, B=1000, show.boots=FALSE, item.stats.max=12, conf.lvl=.95){
+#' Compute User Specified Lambda 4 (Split-Half)
+#' 
+#' @param x Can be either a data frame or a covariance matrix.
+#' @param split.method Specify method for splitting items.
+#' @param item.stats If TRUE then item statistics are provided in the output.
+#' @param missing How to handle missing values.
+#' 
+#' @references
+#' Guttman L (1945). "A Basis for Analyzing Test-Retest Reliability." Psychometrika, 10, 255-282.
+#' @author Tyler Hunt \email{tyler@@psychoanalytix.com}
+#' 
+#' @examples
+#' user.lambda4(Rosenberg)
+#' user.lambda4(Rosenberg, c(0, 1, 1, 0, 1, 1, 0, 1, 0, 0))
+#' 
+#' @export
+
+
+user.lambda4<-function(x, split.method="even.odd", item.stats=FALSE, missing="complete"){
 
  #number of variables
  nvar<-dim(x)[2] 
@@ -8,55 +25,45 @@ function(x, split.method="even.odd", bootstrap=FALSE, B=1000, show.boots=FALSE, 
  
  #Determines if x is a covariance or a data matrix and establishes a covariance matrix for estimation.
  p <- dim(x)[2]
- if (dim(x)[1] == p) sigma <- as.matrix(x)  else sigma <- var(x, use="pairwise")
+ sigma <- impute.cov(x, missing)
  
  if(split.method[1]=="even.odd") t1t.split<-rep(c(1,0),ceiling(nvar/2))[1:nvar] 
  if(split.method[1]=="random") t1t.split<-round(runif(nvar))
  if(split.method[1]=="evenly.random") t1t.split<-sample(rep(c(1,0),ceiling(nvar/2))[1:nvar])
  if(split.method[1]==1 | split.method[1]==0) t1t.split<-split.method 
-
  if(length(t1t.split)!=nvar)
  	warning("The length of split is not the same as the number of items")
  Split<-t1t.split
  Obs<-colSums(!is.na(x))
- if(p<=item.stats.max){
- if (dim(x)[1] != p)
- 	{
- 	Mean<-round(colMeans(x, na.rm=TRUE),digits=2)
- 	SD<-round(apply(x,2,sd, na.rm=TRUE), digits=2)
- 	Item.Statistics<-data.frame(Split,Mean,SD,Obs, row.names=colnames(x))
-	 }
-else
-	{Item.Statistics<-data.frame(Split, Obs)}}
+ 
+
+  if(n != p & item.stats == TRUE){
+ 	  Mean<-round(colMeans(x, na.rm=TRUE),digits=2)
+ 	  SD<-round(sapply(x,sd, na.rm=TRUE), digits=2)
+ 	  Item.Statistics<-data.frame(Mean,SD,Obs, row.names=(colnames(x)))
+	  }
+  else{
+   Item.Statistics<-NULL
+    }
+  if(n == p & item.stats == TRUE){
+    warning("Item statistics cannot be provided from a covariance matrix", call.=FALSE)
+    Item.Statistics=NULL
+    }
+
+
  t1t.split<-t(t1t.split)
  t2.split<-(t(t1t.split)-1)*-1
  
  onerow<-rep(1, nvar)
  onerow<-t(onerow)
  onevector<-t(onerow)
- if(bootstrap==TRUE){
- 	temp<-rep(NA, B)
- 	for(i in 1:B){
- 		samp<-round(sample(1:n, replace=TRUE))
- 		sigma<-cov(x[samp,], use="pairwise")
- 		temp[i]<-(4*(t1t.split%*%sigma%*%t2.split))/(onerow%*%sigma)%*%onevector
- 	}
- 	z<-qnorm(1-(1-conf.lvl)/2)
- 	Estimate<-mean(temp)
- 	LowerCI<-Estimate-z*sd(temp)
- 	UpperCI<-Estimate+z*sd(temp)
- 	Estimate<-data.frame(LowerCI,Estimate,UpperCI, row.names=NULL)
- 	Boots<-temp
- }
- if(bootstrap==FALSE) {Estimate<-(4*(t1t.split%*%sigma%*%t2.split))/(onerow%*%sigma)%*%onevector
- 	Estimate=data.frame(Estimate)}
+
+ lambda4<-(4*(t1t.split%*%sigma%*%t2.split))/sum(sigma)
  
- if(p<=item.stats.max){
- if(show.boots==TRUE) 
- {result<-list(lambda4=Estimate, Item.Statistics=Item.Statistics, Boots=Boots)}
- if(show.boots==FALSE)
- {result<-list(lambda4=Estimate, Item.Statistics=Item.Statistics)}}
- if(p>item.stats.max)
- {result<-list(lambda4=Estimate)}
+ 
+ result<-list(lambda4=lambda4, Item.Statistics=Item.Statistics, Split=Split)
+ 
+ class(result)=c("user.lambda4")
  return(result)
  }
+

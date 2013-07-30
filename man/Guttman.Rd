@@ -1,18 +1,44 @@
-\name{Guttman}
-\alias{Guttman}
-\docType{data}
-\title{Artificial Guttman Scale}
-\description{This artificial Guttman scale was taken from Bentler (1972)
+\name{guttman}
+\alias{guttman}
+\title{Guttman's 6 Lambda Coefficients}
+\usage{
+  guttman(x, missing = "complete", standardize = FALSE)
 }
-\usage{data(Guttman)}
-\format{
-  The format is:
- num [1:5, 1:5] 0.09 0.08 0.05 0.02 0.01 0.08 0.16 0.1 0.04 0.02 ...
+\arguments{
+  \item{x}{Can be either a data matrix or a covariance
+  matrix}
+
+  \item{missing}{How to handle missing values.}
+
+  \item{standardize}{When TRUE Results are standardized by
+  using the correlation matrix instead of the covariance
+  matrix for computation.}
 }
-\source{
-Bentler, PM (1972). "A Lower-Bound Method for the Dimension-Free Measurement of Internal Consistency" 1(4), 343-357.
+\value{
+  \item{Lambda1}{Guttman's Lambda1 estimate of
+  reliability.} \item{Lambda2}{Guttman's Lambda2 estimate
+  of reliability.} \item{Lambda3}{Guttman's Lambda3
+  estimate of reliability. Also known as Cronbach's alpha
+  or coefficient alpha.} \item{Lambda4}{Guttman's maximimal
+  Lambda4 estimate of reliability.}
+  \item{Lambda5}{Guttman's Lambda5 estimate of
+  reliability.} \item{Lambda6}{Guttman's Lambda6 estimate
+  of reliability.}
+}
+\description{
+  Calculates all 6 of Guttman's lambda coefficients.
+}
+\note{
+  The estimate for Lambda4 is maximized.
 }
 \examples{
-data(Guttman)
+guttman(Rosenberg)
 }
-\keyword{datasets}
+\author{
+  Tyler Hunt \email{tyler@psychoanalytix.com}
+}
+\references{
+  Guttman L (1945). "A Basis for Analyzing Test-Retest
+  Reliability." Psychometrika, 10, 255-282.
+}
+
